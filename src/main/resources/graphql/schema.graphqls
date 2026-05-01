@@ -1,0 +1,27 @@
+type Query {
+    allUsers: [User]
+    userById(id: ID!): User
+    usersByRole(role: String!): [User]
+    allPieces: [Piece]
+    pieceById(id: ID!): Piece
+    piecesByCategorie(categorie: String!): [Piece]
+    lowStockPieces: [Piece]
+    allInterventions: [Intervention]
+    interventionById(id: ID!): Intervention
+    interventionsByClient(clientId: Long!): [Intervention]
+    interventionsByTechnician(technicianId: Long!): [Intervention]
+    interventionsByStatut(statut: String!): [Intervention]
+}
+
+type Mutation {
+    createUser(nom: String!, prenom: String!, username: String!, password: String!, email: String!, telephone: String, role: String!): User
+    updateUser(id: ID!, nom: String, prenom: String, email: String, telephone: String): User
+    deleteUser(id: ID!): Boolean
+    createPiece(nom: String!, description: String, quantite: Int, prixAchat: Float, prixVente: Float, stockMin: Int, reference: String, categorie: String): Piece
+    updatePiece(id: ID!, nom: String, description: String, quantite: Int, prixAchat: Float, prixVente: Float, stockMin: Int, reference: String, categorie: String): Piece
+    deletePiece(id: ID!): Boolean
+    createIntervention(clientId: Long!, technicianId: Long, datePrevue: String, description: String, adresse: String, prix: Float): Intervention
+    startIntervention(id: ID!): Intervention
+    finishIntervention(id: ID!): Intervention
+    deleteIntervention(id: ID!): Boolean
+}
